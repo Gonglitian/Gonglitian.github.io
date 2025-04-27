@@ -25,20 +25,21 @@ Litian Gong is currently a first-year M.S. student advised by Prof. Jiachen Li a
 - *2023.10*: &nbsp;🎉🎉 Published paper on grid-connected PV and ESS system at IEEE ICNEPE 2023, Hangzhou, China.
 
 # 📝 Publications 
+<div class='paper-box'>
+<div class='paper-box-image'>
+<div class="badge">ICNEPE 2023</div>
+<img src='images/500x300.png' alt="sym" width="100%">
+</div>
+</div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [A Friendly Grid-connected Distribution System with PV and ESS for Remote Rural Residential Family](https://ieeexplore.ieee.org/document/10429728)
 
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+**Liitan Gong**, Jiaxuan Ren, Shuoyu Jin, Shaorong Wang
 
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-</div>
 </div>
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
 
 # 🎖 Honors and Awards
 - *2024.06* HUST Outstanding Undergraduate Student (Top 20%).
