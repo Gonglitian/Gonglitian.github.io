@@ -17,7 +17,7 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Litian Gong is currently a first-year M.S. student advised by Prof. Jiachen Li at the University of California, Riverside. Before that, he received his B.S. degree in Electrical Engineering from Huazhong University of Science and Technology in 2024. During his undergraduate studies, he conducted research on smart grid systems, reinforcement learning-based inspection robots, and deep learning optimization algorithms. His research interests include embodied AI, human-computer interaction for navigation, vision-language reasoning, and trustworthy AI, with applications to robotics and autonomous systems.
+Litian Gong is currently a first-year M.S. student advised by Prof. [Jiachen Li](https://jiachenli94.github.io/) at the University of California, Riverside. Before that, he received his B.S. degree in Electrical Engineering from Huazhong University of Science and Technology in 2024. During his undergraduate studies, he conducted research on smart grid systems, reinforcement learning-based inspection robots, and deep learning optimization algorithms. His research interests include embodied AI, human-computer interaction for navigation, vision-language reasoning, and trustworthy AI, with applications to robotics and autonomous systems.
 
 
 # 🔥 News
@@ -28,7 +28,7 @@ Litian Gong is currently a first-year M.S. student advised by Prof. Jiachen Li a
 <div class='paper-box'>
 <div class='paper-box-image'>
 <div class="badge">ICNEPE 2023</div>
-<img src='images/500x300.png' alt="sym" width="100%">
+<img src='images/ICNEPE2023.png' alt="sym" width="100%">
 </div>
 </div>
 
