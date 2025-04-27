@@ -29,7 +29,7 @@ Litian Gong is currently a first-year M.S. student advised by Prof. Jiachen Li a
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
+[A Friendly Grid-connected Distribution System with PV and ESS for Remote Rural Residential Family](https://ieeexplore.ieee.org/document/10429728)
 
 **Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
 
