@@ -36,7 +36,7 @@ Litian Gong is currently a first-year M.S. student advised by Prof. [Jiachen Li]
 
 [A Friendly Grid-connected Distribution System with PV and ESS for Remote Rural Residential Family](https://ieeexplore.ieee.org/document/10429728)
 
-**Liitan Gong**, Jiaxuan Ren, Shuoyu Jin, Shaorong Wang
+**Litian Gong**, Jiaxuan Ren, Shuoyu Jin, Shaorong Wang
 
 </div>
 
