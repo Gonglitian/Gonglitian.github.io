@@ -68,18 +68,18 @@ export default function Profile({ author, social, features, researchInterests }:
     };
 
     const socialLinks = [
-        {
+        ...(social.email ? [{
             name: 'Email',
-            href: `mailto:${author.email}`,
+            href: `mailto:${social.email}`,
             icon: EnvelopeIcon,
             isEmail: true,
-        },
-        {
+        }] : []),
+        ...(social.location || social.location_details ? [{
             name: 'Location',
-            href: author.location_url || '#',
+            href: social.location_url || '#',
             icon: MapPinIcon,
             isLocation: true,
-        },
+        }] : []),
         ...(social.google_scholar ? [{
             name: 'Google Scholar',
             href: social.google_scholar,
@@ -190,13 +190,13 @@ export default function Profile({ author, social, features, researchInterests }:
                                                         </div>
                                                     )}
                                                 </div>
-                                                {author.location_details?.map((line, i) => (
+                                                {social.location_details?.map((line, i) => (
                                                     <p key={i} className="break-words">{line}</p>
                                                 ))}
                                                 <div className="mt-2 flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2 justify-center">
-                                                    {author.location_url && (
+                                                    {social.location_url && (
                                                         <a
-                                                            href={author.location_url}
+                                                            href={social.location_url}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className="inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-dark text-white px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 w-full sm:w-auto"
@@ -267,7 +267,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                                         </div>
                                                     )}
                                                 </div>
-                                                <p className="break-words">{author.email.replace('@', ' (at) ')}</p>
+                                                <p className="break-words">{social.email?.replace('@', ' (at) ')}</p>
                                                 <div className="mt-2">
                                                     <a
                                                         href={link.href}

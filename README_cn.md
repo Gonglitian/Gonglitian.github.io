@@ -4,7 +4,7 @@
 
 # PRISM
 
-[English](README.md) · **中文** · [在线演示](https://prism-demo.pages.dev)
+[English](README.md) · **中文** · [在线演示](https://prism-demo.pages.dev) · [更新日志](CHANGELOG.md)
 
 PRISM 是 **P**ortfolio & **R**esearch **I**nterface **S**ite **M**aker（作品集与研究主页生成器）的缩写。这是一个基于 Next.js、Tailwind CSS 和 TypeScript 构建的现代化、高性能个人网站模板。
 

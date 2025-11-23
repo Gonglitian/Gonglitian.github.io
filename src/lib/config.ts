@@ -14,20 +14,21 @@ export interface SiteConfig {
         title: string;
         institution: string;
         avatar: string;
-        email: string;
-        location: string;
-        location_url?: string;
-        location_details?: string[];
     };
     social: {
+        email?: string;
+        location?: string;
+        location_url?: string;
+        location_details?: string[];
         google_scholar?: string;
         orcid?: string;
         github?: string;
         linkedin?: string;
-        [key: string]: string | undefined;
+        [key: string]: string | string[] | undefined;
     };
     features: {
         enable_likes: boolean;
+        enable_one_page_mode?: boolean;
     };
     navigation: Array<{
         title: string;

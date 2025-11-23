@@ -63,7 +63,7 @@ export default async function DynamicPage({ params }: { params: Promise<{ slug: 
 function PublicationPage({ config }: { config: PublicationPageConfig }) {
     const bibtex = getBibtexContent(config.source);
     const publications = parseBibTeX(bibtex);
-    return <PublicationsList publications={publications} description={config.description} />;
+    return <PublicationsList config={config} publications={publications} />;
 }
 
 function TextPageWrapper({ config }: { config: TextPageConfig }) {

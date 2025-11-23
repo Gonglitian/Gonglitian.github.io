@@ -7,9 +7,10 @@ import { Publication } from '@/types/publication';
 interface SelectedPublicationsProps {
     publications: Publication[];
     title?: string;
+    enableOnePageMode?: boolean;
 }
 
-export default function SelectedPublications({ publications, title = 'Selected Publications' }: SelectedPublicationsProps) {
+export default function SelectedPublications({ publications, title = 'Selected Publications', enableOnePageMode = false }: SelectedPublicationsProps) {
     return (
         <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -19,7 +20,7 @@ export default function SelectedPublications({ publications, title = 'Selected P
             <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-serif font-bold text-primary">{title}</h2>
                 <Link
-                    href="/publications"
+                    href={enableOnePageMode ? "/#publications" : "/publications"}
                     prefetch={true}
                     className="text-accent hover:text-accent-dark text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
                 >

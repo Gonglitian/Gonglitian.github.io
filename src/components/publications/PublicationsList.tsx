@@ -12,14 +12,16 @@ import {
     DocumentTextIcon
 } from '@heroicons/react/24/outline';
 import { Publication } from '@/types/publication';
+import { PublicationPageConfig } from '@/types/page';
 import { cn } from '@/lib/utils';
 
 interface PublicationsListProps {
+    config: PublicationPageConfig;
     publications: Publication[];
-    description?: string;
+    embedded?: boolean;
 }
 
-export default function PublicationsList({ publications, description }: PublicationsListProps) {
+export default function PublicationsList({ config, publications, embedded = false }: PublicationsListProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
     const [selectedType, setSelectedType] = useState<string | 'all'>('all');
@@ -61,16 +63,17 @@ export default function PublicationsList({ publications, description }: Publicat
             transition={{ duration: 0.6, delay: 0.4 }}
         >
             <div className="mb-8">
-                <h1 className="text-4xl font-serif font-bold text-primary mb-4">Publications</h1>
-                {description && (
-                    <p className="text-lg text-neutral-600 dark:text-neutral-500 max-w-2xl">
-                        {description}
+                <h1 className={`${embedded ? "text-2xl" : "text-4xl"} font-serif font-bold text-primary mb-4`}>{config.title}</h1>
+                {config.description && (
+                    <p className={`${embedded ? "text-base" : "text-lg"} text-neutral-600 dark:text-neutral-500 max-w-2xl`}>
+                        {config.description}
                     </p>
                 )}
             </div>
 
             {/* Search and Filter Controls */}
             <div className="mb-8 space-y-4">
+                {/* ... (keep existing controls) ... */}
                 <div className="flex flex-col sm:flex-row gap-4">
                     <div className="relative flex-grow">
                         <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-neutral-400" />
@@ -208,10 +211,10 @@ export default function PublicationsList({ publications, description }: Publicat
                                     </div>
                                 )}
                                 <div className="flex-grow">
-                                    <h3 className="text-xl font-semibold text-primary mb-2 leading-tight">
+                                    <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary mb-2 leading-tight`}>
                                         {pub.title}
                                     </h3>
-                                    <p className="text-neutral-600 dark:text-neutral-400 mb-2">
+                                    <p className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-400 mb-2`}>
                                         {pub.authors.map((author, idx) => (
                                             <span key={idx}>
                                                 <span className={author.isHighlighted ? 'font-semibold text-accent' : ''}>
