@@ -33,7 +33,7 @@ PRISM 专为**研究人员、开发者和学者**量身打造，只为让你能�
 1.  **克隆仓库：**
 
     ```bash
-    git clone https://github.com/yourusername/PRISM.git
+    git clone https://github.com/xyjoey/PRISM.git
     cd PRISM
     ```
 
