@@ -21,10 +21,13 @@ export interface CardItem {
     content?: string;
     tags?: string[];
     link?: string;
+    code?: string;
+    demo?: string;
+    paper?: string;
     image?: string;
 }
 
 export interface CardPageConfig extends BasePageConfig {
     type: 'card';
-    items: CardItem[];
+    items?: CardItem[];
 }

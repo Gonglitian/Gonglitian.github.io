@@ -79,15 +79,19 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
       issue: tags.number,
       pages: tags.pages,
       doi: tags.doi,
+      arxivId: tags.eprint,
       url: tags.url,
       code: tags.code,
+      project: tags.project,
       abstract: cleanBibTeXString(tags.abstract),
       description: cleanBibTeXString(tags.description || tags.note),
       selected,
       preview,
+      // Store archivePrefix to identify arXiv papers
+      venue: tags.archivePrefix?.toLowerCase() === 'arxiv' ? 'arXiv' : cleanBibTeXString(tags.journal || tags.booktitle),
       
       // Store original BibTeX (excluding custom fields)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code']),
+      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'project']),
     };
     
     // Clean up undefined fields
@@ -115,7 +119,7 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
   });
 }
 
-function parseAuthors(authorsStr: string): Array<{ name: string; isHighlighted?: boolean; isCorresponding?: boolean; isCoAuthor?: boolean }> {
+function parseAuthors(authorsStr: string): Array<{ name: string; isHighlighted?: boolean; isCorresponding?: boolean; isCoAuthor?: boolean; isCoFirst?: boolean }> {
   if (!authorsStr) return [];
   
   // Split by "and" and clean up
@@ -125,14 +129,18 @@ function parseAuthors(authorsStr: string): Array<{ name: string; isHighlighted?:
       // Clean up the author name
       let name = author.trim();
       
-      // Check for corresponding author marker
-      const isCorresponding = name.includes('*');
+      // Check for co-first author marker (*)
+      const isCoFirst = name.includes('*');
+      
+      // Check for corresponding author marker (†)
+      const isCorresponding = name.includes('†') || name.includes('\\dagger');
       
       // Check for co-author marker (#)
       const isCoAuthor = name.includes('#');
       
-      // Remove special markers from name
-      name = name.replace(/[*#]/g, '');
+      // Remove special markers from name (but preserve the actual name)
+      // Note: Use | to separate patterns, not concatenate, to avoid \d being interpreted as digit class
+      name = name.replace(/[*#†]|\\dagger/g, '').trim();
       
       // Handle "Last, First" format
       if (name.includes(',')) {
@@ -140,15 +148,29 @@ function parseAuthors(authorsStr: string): Array<{ name: string; isHighlighted?:
         name = `${parts[1]} ${parts[0]}`;
       }
       
-      // Check if this is Jiale Liu (to highlight)
-      const isHighlighted = name.toLowerCase().includes('jiale liu') || 
-                          name.toLowerCase().includes('liu jiale');
+      // For author names, use a gentler cleaning that preserves all letters
+      // Only remove LaTeX-specific formatting, not regular characters
+      name = name
+        .replace(/\\textbf\{([^}]*)\}/g, '$1')
+        .replace(/\\emph\{([^}]*)\}/g, '$1')
+        .replace(/\\cite\{[^}]*\}/g, '')
+        .replace(/~/g, ' ')
+        .replace(/\{([^{}]*)\}/g, '$1') // Remove braces but keep content
+        .replace(/[{}]/g, '') // Remove any remaining braces
+        .replace(/\\/g, '') // Remove backslashes
+        .replace(/\s+/g, ' ')
+        .trim();
+      
+      // Check if this is Litian Gong (to highlight)
+      const isHighlighted = name.toLowerCase().includes('litian gong') || 
+                          name.toLowerCase().includes('gong litian');
       
       return {
-        name: cleanBibTeXString(name),
+        name,
         isHighlighted,
         isCorresponding,
         isCoAuthor,
+        isCoFirst,
       };
     })
     .filter(author => author.name);

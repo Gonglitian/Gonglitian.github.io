@@ -1,0 +1,14 @@
+type = "card"
+title = "Services"
+
+[[items]]
+title = "Conference Reviewer"
+subtitle = "IEEE International Conference on Robotics and Automation (ICRA)"
+date = "2025 - present"
+content = "Reviewing papers for ICRA, focusing on robot learning, imitation learning, and embodied AI."
+
+[[items]]
+title = "Conference Reviewer"
+subtitle = "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+date = "2025 - present"
+content = "Reviewing papers for CVPR, focusing on vision-language models and computer vision applications in robotics."

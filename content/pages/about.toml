@@ -1,0 +1,49 @@
+type = "about"
+title = "About"
+
+[profile]
+research_interests = [
+  "Scalable Robot Learning Frameworks",
+  "Imitation and Reinforcement Learning",
+  "Visual-Language Models for Decision Making",
+  "Sim-to-Real Transfer",
+  "Embodied AI"
+]
+
+[[sections]]
+id = "about"
+type = "markdown"
+source = "markdown/bio.md"
+title = "About"
+
+[[sections]]
+id = "featured_publications"
+type = "publications"
+title = "Selected Publications"
+filter = "selected"
+limit = 5
+
+[[sections]]
+id = "news"
+type = "list"
+title = "News"
+source = "pages/news.toml"
+
+[[sections]]
+id = "awards"
+type = "card"
+title = "Awards"
+source = "pages/awards.toml"
+
+[[sections]]
+id = "services"
+type = "card"
+title = "Services"
+source = "pages/services.toml"
+
+[[sections]]
+id = "cv"
+type = "text"
+title = "CV"
+source = "pages/cv.toml"
+

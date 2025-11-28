@@ -15,7 +15,7 @@ import { BasePageConfig, PublicationPageConfig, TextPageConfig, CardPageConfig }
 // Define types for section config
 interface SectionConfig {
   id: string;
-  type: 'markdown' | 'publications' | 'list';
+  type: 'markdown' | 'publications' | 'list' | 'card' | 'text';
   title?: string;
   source?: string;
   filter?: string;
@@ -23,6 +23,7 @@ interface SectionConfig {
   content?: string;
   publications?: Publication[];
   items?: NewsItem[];
+  config?: CardPageConfig | TextPageConfig;
 }
 
 type PageData =
@@ -49,7 +50,7 @@ export default function Home() {
             content: section.source ? getMarkdownContent(section.source) : ''
           };
         case 'publications': {
-          const bibtex = getBibtexContent('publications.bib');
+          const bibtex = getBibtexContent('bib/publications.bib');
           const allPubs = parseBibTeX(bibtex);
           const filteredPubs = section.filter === 'selected'
             ? allPubs.filter(p => p.selected)
@@ -64,6 +65,29 @@ export default function Home() {
           return {
             ...section,
             items: newsData?.news || []
+          };
+        }
+        case 'card': {
+          // section.source can be "data/awards.toml" or just "awards.toml"
+          const sourcePath = section.source || '';
+          // Remove .toml extension if present, getPageConfig will handle the path correctly
+          const pageName = sourcePath.endsWith('.toml') ? sourcePath.slice(0, -5) : sourcePath;
+          const cardConfig = section.source ? getPageConfig<CardPageConfig>(pageName) : null;
+          return {
+            ...section,
+            config: cardConfig || undefined
+          };
+        }
+        case 'text': {
+          // section.source can be "pages/cv.toml" or just "cv.toml"
+          const sourcePath = section.source || '';
+          // Remove .toml extension if present, getPageConfig will handle the path correctly
+          const pageName = sourcePath.endsWith('.toml') ? sourcePath.slice(0, -5) : sourcePath;
+          const textConfig = section.source ? getPageConfig<TextPageConfig>(pageName) : null;
+          return {
+            ...section,
+            config: textConfig || undefined,
+            content: textConfig?.source ? getMarkdownContent(textConfig.source) : ''
           };
         }
         default:
@@ -173,6 +197,23 @@ export default function Home() {
                         title={section.title}
                       />
                     );
+                  case 'card':
+                    return section.config ? (
+                      <CardPage
+                        key={section.id}
+                        config={section.config as CardPageConfig}
+                        embedded={true}
+                      />
+                    ) : null;
+                  case 'text':
+                    return section.config ? (
+                      <TextPage
+                        key={section.id}
+                        config={section.config as TextPageConfig}
+                        content={section.content || ''}
+                        embedded={true}
+                      />
+                    ) : null;
                   default:
                     return null;
                 }

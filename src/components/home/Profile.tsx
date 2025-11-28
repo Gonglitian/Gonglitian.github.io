@@ -7,12 +7,14 @@ import {
     EnvelopeIcon,
     AcademicCapIcon,
     HeartIcon,
-    MapPinIcon
+    MapPinIcon,
+    GlobeAltIcon
 } from '@heroicons/react/24/outline';
 import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
-import { Github, Linkedin, Pin } from 'lucide-react';
+import { Github, Linkedin, Pin, Twitter, Youtube, Instagram, Facebook } from 'lucide-react';
 import { SiteConfig } from '@/lib/config';
+import { normalizeUrl } from '@/lib/utils';
 
 // Custom ORCID icon component
 const OrcidIcon = ({ className }: { className?: string }) => (
@@ -23,6 +25,18 @@ const OrcidIcon = ({ className }: { className?: string }) => (
         xmlns="http://www.w3.org/2000/svg"
     >
         <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" />
+    </svg>
+);
+
+// Custom ResearchGate icon component
+const ResearchGateIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M16.34 13.13c-.83 0-1.53-.64-1.53-1.43s.7-1.43 1.53-1.43 1.53.64 1.53 1.43-.7 1.43-1.53 1.43zm-5.15-3.29c-1.1 0-2.01-.86-2.01-1.92 0-1.06.91-1.92 2.01-1.92s2.01.86 2.01 1.92c0 1.06-.91 1.92-2.01 1.92zm8.49-3.7c0-.72-.59-1.3-1.32-1.3-.73 0-1.32.58-1.32 1.3 0 .72.59 1.3 1.32 1.3.73 0 1.32-.58 1.32-1.3zm-5.7 0c0-.72-.59-1.3-1.32-1.3-.73 0-1.32.58-1.32 1.3 0 .72.59 1.3 1.32 1.3.73 0 1.32-.58 1.32-1.3zm-5.7 0c0-.72-.59-1.3-1.32-1.3-.73 0-1.32.58-1.32 1.3 0 .72.59 1.3 1.32 1.3.73 0 1.32-.58 1.32-1.3zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
     </svg>
 );
 
@@ -41,7 +55,8 @@ export default function Profile({ author, social, features, researchInterests }:
     const [isAddressPinned, setIsAddressPinned] = useState(false);
     const [showEmail, setShowEmail] = useState(false);
     const [isEmailPinned, setIsEmailPinned] = useState(false);
-    const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | null>(null);
+    const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | string | null>(null);
+    const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
     // Check local storage for user's like status
     useEffect(() => {
@@ -76,29 +91,59 @@ export default function Profile({ author, social, features, researchInterests }:
         }] : []),
         ...(social.location || social.location_details ? [{
             name: 'Location',
-            href: social.location_url || '#',
+            href: normalizeUrl(social.location_url),
             icon: MapPinIcon,
             isLocation: true,
         }] : []),
+        ...(social.website ? [{
+            name: 'Website',
+            href: normalizeUrl(typeof social.website === 'string' ? social.website : undefined),
+            icon: GlobeAltIcon,
+        }] : []),
         ...(social.google_scholar ? [{
             name: 'Google Scholar',
-            href: social.google_scholar,
+            href: normalizeUrl(typeof social.google_scholar === 'string' ? social.google_scholar : undefined),
             icon: AcademicCapIcon,
         }] : []),
         ...(social.orcid ? [{
             name: 'ORCID',
-            href: social.orcid,
+            href: normalizeUrl(typeof social.orcid === 'string' ? social.orcid : undefined),
             icon: OrcidIcon,
         }] : []),
         ...(social.github ? [{
             name: 'GitHub',
-            href: social.github,
+            href: normalizeUrl(typeof social.github === 'string' ? social.github : undefined),
             icon: Github,
         }] : []),
         ...(social.linkedin ? [{
             name: 'LinkedIn',
-            href: social.linkedin,
+            href: normalizeUrl(typeof social.linkedin === 'string' ? social.linkedin : undefined),
             icon: Linkedin,
+        }] : []),
+        ...(social.twitter ? [{
+            name: 'Twitter',
+            href: normalizeUrl(typeof social.twitter === 'string' ? social.twitter : undefined),
+            icon: Twitter,
+        }] : []),
+        ...(social.youtube ? [{
+            name: 'YouTube',
+            href: normalizeUrl(typeof social.youtube === 'string' ? social.youtube : undefined),
+            icon: Youtube,
+        }] : []),
+        ...(social.instagram ? [{
+            name: 'Instagram',
+            href: normalizeUrl(typeof social.instagram === 'string' ? social.instagram : undefined),
+            icon: Instagram,
+        }] : []),
+        ...(social.facebook ? [{
+            name: 'Facebook',
+            href: normalizeUrl(typeof social.facebook === 'string' ? social.facebook : undefined),
+            icon: Facebook,
+        }] : []),
+        ...(social.researchgate ? [{
+            name: 'ResearchGate',
+            href: normalizeUrl(typeof social.researchgate === 'string' ? social.researchgate : undefined),
+            icon: ResearchGateIcon,
         }] : []),
     ];
 
@@ -196,7 +241,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                                 <div className="mt-2 flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2 justify-center">
                                                     {social.location_url && (
                                                         <a
-                                                            href={social.location_url}
+                                                            href={normalizeUrl(social.location_url)}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className="inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-dark text-white px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 w-full sm:w-auto"
@@ -286,17 +331,45 @@ export default function Profile({ author, social, features, researchInterests }:
                             </div>
                         );
                     }
+                    const linkHref = typeof link.href === 'string' ? link.href : '#';
                     return (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200"
-                            aria-label={link.name}
-                        >
-                            <IconComponent className="h-5 w-5" />
-                        </a>
+                        <div key={link.name} className="relative inline-block">
+                            <a
+                                href={linkHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200 inline-block"
+                                aria-label={link.name}
+                                onMouseEnter={() => setHoveredLink(link.name)}
+                                onMouseLeave={() => setHoveredLink(null)}
+                            >
+                                <IconComponent className="h-5 w-5" />
+                            </a>
+                            
+                            {/* Tooltip */}
+                            <AnimatePresence>
+                                {hoveredLink === link.name && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                                        animate={{ opacity: 1, y: -10, scale: 1 }}
+                                        exit={{ opacity: 0, y: -20, scale: 0.8 }}
+                                        className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-neutral-800 text-white px-3 py-2 rounded-lg text-xs font-medium shadow-lg z-20 pointer-events-none min-w-[150px] max-w-[250px]"
+                                        onMouseEnter={() => setHoveredLink(link.name)}
+                                        onMouseLeave={() => setHoveredLink(null)}
+                                    >
+                                        <div className="text-center">
+                                            <p className="font-semibold whitespace-nowrap">{link.name}</p>
+                                            {linkHref !== '#' && (
+                                                <p className="text-xs text-neutral-300 mt-1 break-words break-all">
+                                                    {linkHref.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                                                </p>
+                                            )}
+                                        </div>
+                                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-neutral-800"></div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     );
                 })}
             </div>

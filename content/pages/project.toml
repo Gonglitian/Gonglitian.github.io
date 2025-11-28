@@ -1,0 +1,24 @@
+type = "card"
+title = "Projects"
+description = "Research projects and work I have been involved in."
+
+[[items]]
+title = "AutoFocus-IL"
+subtitle = "VLM-based Visual Imitation Learning"
+date = "2025"
+content = "A vision-language model guided saliency framework for data-efficient visual imitation learning. The system automatically identifies task-relevant visual cues without requiring human gaze supervision, improving policy robustness in both simulation and real-robot experiments."
+image = "/papers/autofocus-il.png"
+demo = "https://autofocus-il.github.io/"
+code = "https://github.com/autofocus-il/autofocus-il"
+paper = "https://arxiv.org/abs/2511.18617"
+tags = ["Imitation Learning", "VLMs", "Robot Learning", "PyTorch"]
+
+[[items]]
+title = "ORIC Benchmark"
+subtitle = "Object Recognition in Incongruous Contexts"
+date = "2025"
+content = "A comprehensive benchmark for evaluating object recognition capabilities of large vision-language models when objects appear in unexpected or unusual settings. The benchmark tests robustness and generalization of VLMs across diverse contextual scenarios."
+image = "/papers/oric.png"
+code = "https://github.com/ZhaoyangLi-1/ORIC"
+paper = "https://arxiv.org/abs/2509.15695"
+tags = ["Computer Vision", "VLMs", "Benchmarking", "Evaluation"]

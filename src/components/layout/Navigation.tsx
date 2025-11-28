@@ -122,7 +122,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
 
                         const href = enableOnePageMode
                           ? `/#${item.target}`
-                          : item.href;
+                          : item.href === '/' ? '/' : `${item.href}/`;
 
                         return (
                           <Link
@@ -153,6 +153,33 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                           </Link>
                         );
                       })}
+                      {/* Edit link - only in development */}
+                      {process.env.NODE_ENV === 'development' && (
+                        <Link
+                          href="/edit"
+                          prefetch={true}
+                          className={cn(
+                            'relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm',
+                            pathname === '/edit'
+                              ? 'text-primary'
+                              : 'text-neutral-600 hover:text-primary'
+                          )}
+                        >
+                          <span className="relative z-10">Edit</span>
+                          {pathname === '/edit' && (
+                            <motion.div
+                              layoutId="activeTab"
+                              className="absolute inset-0 bg-accent/10 rounded-lg"
+                              initial={false}
+                              transition={{
+                                type: 'spring',
+                                stiffness: 500,
+                                damping: 30
+                              }}
+                            />
+                          )}
+                        </Link>
+                      )}
                     </div>
                     <ThemeToggle />
                   </div>
@@ -200,7 +227,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
 
                       const href = enableOnePageMode
                         ? (item.href === '/' ? '/' : `/#${item.target}`)
-                        : item.href;
+                        : item.href === '/' ? '/' : `${item.href}/`;
 
                       return (
                         <motion.div
@@ -226,6 +253,28 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                         </motion.div>
                       );
                     })}
+                    {/* Edit link - only in development */}
+                    {process.env.NODE_ENV === 'development' && (
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: items.length * 0.1 }}
+                      >
+                        <Disclosure.Button
+                          as={Link}
+                          href="/edit"
+                          prefetch={true}
+                          className={cn(
+                            'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
+                            pathname === '/edit'
+                              ? 'text-primary bg-accent/10 border-l-4 border-accent'
+                              : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'
+                          )}
+                        >
+                          编辑
+                        </Disclosure.Button>
+                      </motion.div>
+                    )}
                   </div>
                 </motion.div>
               </Disclosure.Panel>

@@ -1,0 +1,20 @@
+type = "card"
+title = "Awards"
+
+[[items]]
+title = "Outstanding Undergraduate Graduate"
+subtitle = "Huazhong University of Science and Technology"
+date = "2024"
+content = "Recognized for outstanding academic performance and research contributions."
+
+[[items]]
+title = "Honorable Prize"
+subtitle = "Mathematical Contest In Modeling"
+date = "2023"
+content = "Achieved honorable mention in the international mathematical modeling competition."
+
+[[items]]
+title = "Second Prize"
+subtitle = "China Undergraduate Mathematical Contest in Modeling"
+date = "2022"
+content = "Won second prize in the national mathematical modeling competition."

@@ -25,3 +25,26 @@ export function generateSlug(text: string): string {
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '');
 }
+
+/**
+ * Normalize URL by adding protocol if missing
+ * Handles special cases like mailto:, #, and empty strings
+ */
+export function normalizeUrl(url: string | undefined | null): string {
+  if (!url || url === '#' || url === '') {
+    return '#';
+  }
+  
+  // Don't modify URLs that already have a protocol
+  if (/^https?:\/\//i.test(url)) {
+    return url;
+  }
+  
+  // Don't modify special protocols
+  if (/^(mailto:|tel:|#)/i.test(url)) {
+    return url;
+  }
+  
+  // Add https:// for URLs without protocol
+  return `https://${url}`;
+}
