@@ -65,7 +65,7 @@ export default function News({ items, title = 'News' }: NewsProps) {
                                                     href={normalizeUrl(part.href)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-accent hover:text-accent-dark underline"
+                                                    className="text-accent hover:text-accent-dark underline focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
                                                 >
                                                     {part.text}
                                                 </Link>

@@ -95,6 +95,7 @@ export async function GET() {
     // Add other common files that might not be in navigation
     const commonFiles = [
       { file: 'markdown/bio.md', title: 'Bio', id: 'bio' },
+      { file: 'pages/news.toml', title: 'News', id: 'news' },
       { file: 'markdown/cv.md', title: 'CV Content', id: 'cv-content' },
     ];
 

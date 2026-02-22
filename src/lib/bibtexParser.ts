@@ -1,4 +1,5 @@
 import { Publication, PublicationType, ResearchArea } from '@/types/publication';
+import { getAuthorUrl } from './authorLinks';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const bibtexParse = require('bibtex-parse-js');
@@ -87,8 +88,8 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
       description: cleanBibTeXString(tags.description || tags.note),
       selected,
       preview,
-      // Store archivePrefix to identify arXiv papers
-      venue: tags.archivePrefix?.toLowerCase() === 'arxiv' ? 'arXiv' : cleanBibTeXString(tags.journal || tags.booktitle),
+      // Use journal/booktitle as venue; only fall back to arXiv if no formal venue exists
+      venue: cleanBibTeXString(tags.journal || tags.booktitle) || (tags.archivePrefix?.toLowerCase() === 'arxiv' ? 'arXiv' : ''),
       
       // Store original BibTeX (excluding custom fields)
       bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'project']),
@@ -167,6 +168,7 @@ function parseAuthors(authorsStr: string): Array<{ name: string; isHighlighted?:
       
       return {
         name,
+        url: getAuthorUrl(name),
         isHighlighted,
         isCorresponding,
         isCoAuthor,

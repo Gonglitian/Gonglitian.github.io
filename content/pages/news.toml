@@ -1,4 +1,12 @@
 [[news]]
+date = "2026-02"
+content = "One paper accepted to CVPR 2026: [ORIC: Benchmarking Object Recognition under Contextual Incongruity in Large Vision-Language Models](https://arxiv.org/abs/2509.15695)"
+
+[[news]]
+date = "2026-01"
+content = "One paper accepted to ICRA 2026: [AutoFocus-IL: VLM-based Saliency Maps for Data-Efficient Visual Imitation Learning without Extra Human Annotations](https://arxiv.org/abs/2511.18617)"
+
+[[news]]
 date = "2025-06"
 content = "Joined the [Learning and Interactive Robot Autonomy Lab](https://liralab.usc.edu/) at USC, working with [Prof. Erdem Bıyık](https://ebiyik.github.io/)"
 

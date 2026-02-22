@@ -146,7 +146,7 @@
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-shadow: rgba(0, 0, 0, 0.5);
   
-  /* Neutral colors for dark mode - properly inverted */
+  /* Neutral colors for dark mode */
   --neutral-50: #0f172a;
   --neutral-100: #1e293b;
   --neutral-200: #334155;
@@ -182,16 +182,16 @@ body {
 /* Glass morphism utilities */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-glass);
 }
 
 .glass-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-glass);
   border-radius: 1rem;
@@ -217,25 +217,38 @@ body {
 }
 
 /* Dark mode scrollbar */
+.dark::-webkit-scrollbar-track,
 .dark ::-webkit-scrollbar-track {
   background: var(--neutral-800);
 }
 
+.dark::-webkit-scrollbar-thumb,
 .dark ::-webkit-scrollbar-thumb {
-  background: var(--neutral-600);
+  background: var(--neutral-400);
 }
 
+.dark::-webkit-scrollbar-thumb:hover,
 .dark ::-webkit-scrollbar-thumb:hover {
   background: var(--neutral-500);
 }
 
 /* Card background utility */
 .card-bg {
-  background-color: #ffffff;
+  background-color: var(--background);
 }
 
 .dark .card-bg {
-  background-color: #1e293b;
+  background-color: var(--neutral-800);
   /* Soften card borders in dark mode only */
   border-color: rgba(148, 163, 184, 0.24);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -6,52 +6,44 @@
 
 set -e  # Exit on error
 
+# Save current directory
+PROJECT_ROOT=$(pwd)
+
 echo "🚀 Starting deployment process..."
 
-# Check if nvm is available
+# Load nvm if available
 if [ -s "$HOME/.nvm/nvm.sh" ]; then
-    echo "📦 Loading nvm..."
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    
-    # Use Node.js 22
-    echo "🔄 Switching to Node.js 22..."
-    nvm use 22
 fi
 
 # Check Node.js version
 NODE_VERSION=$(node --version)
 echo "✅ Using Node.js $NODE_VERSION"
 
-# Temporarily move API routes directory outside app folder to exclude from static export
-API_DIR="src/app/api"
-API_BACKUP_DIR=".api.backup"
-API_EXCLUDED=false
+# Initialize and update submodules (e.g. Litian_CV)
+echo "📦 Initializing submodules..."
+git submodule update --init --recursive
 
-if [ -d "$API_DIR" ]; then
-    echo "📦 Temporarily excluding API routes from build..."
-    mv "$API_DIR" "$API_BACKUP_DIR"
-    API_EXCLUDED=true
+# Push Litian_CV submodule if it has changes
+echo "📄 Checking Litian_CV for changes..."
+cd Litian_CV
+if ! git diff --quiet || ! git diff --staged --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+    git add -A
+    git commit -m "Update CV - $(date +%Y-%m-%d\ %H:%M:%S)"
+    git push origin main
+    echo "✅ Litian_CV pushed"
+    cd "$PROJECT_ROOT"
+    # Update submodule reference in main project
+    git add Litian_CV
+else
+    echo "⚠️  No changes in Litian_CV"
+    cd "$PROJECT_ROOT"
 fi
 
-# Build the project
+# Build the project (API routes are automatically excluded by the build script)
 echo "🔨 Building project..."
-set +e  # Temporarily disable exit on error for build
 npm run build
-BUILD_STATUS=$?
-set -e  # Re-enable exit on error
-
-# Restore API routes directory (always restore, even if build failed)
-if [ "$API_EXCLUDED" = true ] && [ -d "$API_BACKUP_DIR" ]; then
-    echo "📦 Restoring API routes directory..."
-    mv "$API_BACKUP_DIR" "$API_DIR"
-fi
-
-# Check build status
-if [ $BUILD_STATUS -ne 0 ]; then
-    echo "❌ Build failed"
-    exit 1
-fi
 
 # Check if build was successful
 if [ ! -d "out" ]; then
@@ -89,9 +81,6 @@ if [ ! -f "out/.nojekyll" ]; then
     echo "📝 Creating .nojekyll file..."
     touch out/.nojekyll
 fi
-
-# Save current directory
-PROJECT_ROOT=$(pwd)
 
 # Navigate to out directory
 cd out

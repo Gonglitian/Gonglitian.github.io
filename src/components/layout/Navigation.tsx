@@ -97,13 +97,11 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
               <div className="flex justify-between items-center h-16 lg:h-20">
                 {/* Logo/Name */}
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   className="flex-shrink-0"
                 >
                   <Link
                     href="/"
-                    className="text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200"
+                    className="text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
                   >
                     {siteTitle}
                   </Link>
@@ -131,7 +129,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                             prefetch={true}
                             onClick={() => enableOnePageMode && setActiveHash(`#${item.target}`)}
                             className={cn(
-                              'relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm',
+                              'relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2',
                               isActive
                                 ? 'text-primary'
                                 : 'text-neutral-600 hover:text-primary'
@@ -159,7 +157,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                           href="/edit"
                           prefetch={true}
                           className={cn(
-                            'relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm',
+                            'relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2',
                             pathname === '/edit'
                               ? 'text-primary'
                               : 'text-neutral-600 hover:text-primary'
@@ -242,10 +240,10 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                             prefetch={true}
                             onClick={() => enableOnePageMode && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
                             className={cn(
-                              'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
+                              'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2',
                               isActive
                                 ? 'text-primary bg-accent/10 border-l-4 border-accent'
-                                : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'
+                                : 'text-neutral-600 hover:text-primary hover:bg-neutral-50 dark:hover:bg-neutral-800'
                             )}
                           >
                             {item.title}
@@ -265,7 +263,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                           href="/edit"
                           prefetch={true}
                           className={cn(
-                            'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
+                            'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2',
                             pathname === '/edit'
                               ? 'text-primary bg-accent/10 border-l-4 border-accent'
                               : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'

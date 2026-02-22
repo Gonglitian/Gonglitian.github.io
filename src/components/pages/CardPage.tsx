@@ -34,7 +34,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
-                        className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
+                        className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01] cursor-pointer`}
                     >
                         <div className="flex flex-col md:flex-row gap-4">
                             {item.image && (
@@ -44,7 +44,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                             src={item.image}
                                             alt={item.title}
                                             fill
-                                            className="object-contain p-2 transition-all duration-300 ease-in-out group-hover:scale-150 group-hover:z-[100] group-hover:shadow-2xl rounded-lg"
+                                            className="object-contain p-2 transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:z-[100] group-hover:shadow-2xl rounded-lg"
                                             sizes={embedded ? "128px" : "192px"}
                                             unoptimized={item.image.endsWith('.gif')}
                                         />
@@ -75,7 +75,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                                 href={normalizeUrl(item.demo)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
                                             >
                                                 <GlobeAltIcon className="h-3 w-3 mr-1.5" />
                                                 Demo
@@ -86,7 +86,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                                 href={normalizeUrl(item.link)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
                                             >
                                                 <GlobeAltIcon className="h-3 w-3 mr-1.5" />
                                                 Link
@@ -97,7 +97,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                                 href={normalizeUrl(item.code)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
                                             >
                                                 <CodeBracketIcon className="h-3 w-3 mr-1.5" />
                                                 Code
@@ -108,7 +108,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                                 href={normalizeUrl(item.paper)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2"
                                             >
                                                 <DocumentTextIcon className="h-3 w-3 mr-1.5" />
                                                 Paper

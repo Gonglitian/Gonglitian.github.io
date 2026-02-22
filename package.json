@@ -4,18 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build:cv": "typst compile Litian_CV/resume.typ Litian_CV/resume.pdf && cp Litian_CV/resume.pdf public/Litian_CV.pdf",
+    "build": "npm run build:cv && mv src/app/api .api.backup 2>/dev/null; next build; EXIT=$?; mv .api.backup src/app/api 2>/dev/null; exit $EXIT",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
-    "bibtex-parse-js": "^0.0.24",
+    "bibtex-parse-js": "^0.0.23",
     "clsx": "^2.1.1",
     "framer-motion": "^12.18.1",
     "lucide-react": "^0.515.0",
-    "next": "15.3.3",
+    "next": "^16.1.6",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -30,10 +31,13 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "svg2ico": "^1.0.35",
+    "eslint-config-next": "^16.1.6",
+    "svg2ico": "^1.0.12",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "minimatch": "^10.2.1"
   },
   "engines": {
     "node": ">=22.0.0"

@@ -77,7 +77,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                 {/* ... (keep existing controls) ... */}
                 <div className="flex flex-col sm:flex-row gap-4">
                     <div className="relative flex-grow">
-                        <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-neutral-400" />
+                        <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-neutral-500" />
                         <input
                             type="text"
                             placeholder="Search publications..."
@@ -89,7 +89,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                     <button
                         onClick={() => setShowFilters(!showFilters)}
                         className={cn(
-                            "flex items-center justify-center px-4 py-2 rounded-lg border transition-all duration-200",
+                            "flex items-center justify-center px-4 py-2 rounded-lg border transition-all duration-200 cursor-pointer",
                             showFilters
                                 ? "bg-accent text-white border-accent"
                                 : "bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-600 hover:border-accent hover:text-accent"
@@ -108,7 +108,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                             exit={{ opacity: 0, height: 0 }}
                             className="overflow-hidden"
                         >
-                            <div className="p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg border border-neutral-200 dark:border-neutral-800 flex flex-wrap gap-6">
+                            <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-800 flex flex-wrap gap-6">
                                 {/* Year Filter */}
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 flex items-center">
@@ -118,10 +118,10 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         <button
                                             onClick={() => setSelectedYear('all')}
                                             className={cn(
-                                                "px-3 py-1 text-xs rounded-full transition-colors",
+                                                "px-3 py-1 text-xs rounded-full transition-colors cursor-pointer",
                                                 selectedYear === 'all'
                                                     ? "bg-accent text-white"
-                                                    : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                    : "bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
                                             )}
                                         >
                                             All
@@ -131,10 +131,10 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                 key={year}
                                                 onClick={() => setSelectedYear(year)}
                                                 className={cn(
-                                                    "px-3 py-1 text-xs rounded-full transition-colors",
+                                                    "px-3 py-1 text-xs rounded-full transition-colors cursor-pointer",
                                                     selectedYear === year
                                                         ? "bg-accent text-white"
-                                                        : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                        : "bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
                                                 )}
                                             >
                                                 {year}
@@ -152,10 +152,10 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         <button
                                             onClick={() => setSelectedType('all')}
                                             className={cn(
-                                                "px-3 py-1 text-xs rounded-full transition-colors",
+                                                "px-3 py-1 text-xs rounded-full transition-colors cursor-pointer",
                                                 selectedType === 'all'
                                                     ? "bg-accent text-white"
-                                                    : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                    : "bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
                                             )}
                                         >
                                             All
@@ -165,10 +165,10 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                 key={type}
                                                 onClick={() => setSelectedType(type)}
                                                 className={cn(
-                                                    "px-3 py-1 text-xs rounded-full capitalize transition-colors",
+                                                    "px-3 py-1 text-xs rounded-full capitalize transition-colors cursor-pointer",
                                                     selectedType === type
                                                         ? "bg-accent text-white"
-                                                        : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                        : "bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
                                                 )}
                                             >
                                                 {type.replace('-', ' ')}
@@ -195,7 +195,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.1 * index }}
-                            className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200"
+                            className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200 cursor-pointer"
                         >
                             <div className="flex flex-col md:flex-row gap-6">
                                 <div className="w-full md:w-80 lg:w-96 flex-shrink-0 relative z-0">
@@ -205,7 +205,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                 src={`/papers/${pub.preview}`}
                                                 alt={pub.title}
                                                 fill
-                                                className="object-contain p-2 transition-all duration-300 ease-in-out group-hover:scale-150 group-hover:z-[100] group-hover:shadow-2xl rounded-lg"
+                                                className="object-contain p-2 transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:z-[100] group-hover:shadow-2xl rounded-lg"
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 320px, 384px"
                                             />
                                         ) : (
@@ -220,25 +220,39 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         {pub.title}
                                     </h3>
                                     <p className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-400 mb-2`}>
-                                        {pub.authors.map((author, idx) => (
-                                            <span key={idx}>
+                                        {pub.authors.map((author, idx) => {
+                                            const nameContent = author.url ? (
+                                                <a
+                                                    href={author.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={`hover:underline cursor-pointer ${author.isHighlighted ? 'font-semibold text-accent' : 'hover:text-accent transition-colors'}`}
+                                                >
+                                                    {author.name}
+                                                </a>
+                                            ) : (
                                                 <span className={author.isHighlighted ? 'font-semibold text-accent' : ''}>
                                                     {author.name}
                                                 </span>
-                                                {author.isCoFirst && (
-                                                    <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>*</sup>
-                                                )}
-                                                {author.isCorresponding && (
-                                                    <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>†</sup>
-                                                )}
-                                                {idx < pub.authors.length - 1 && ', '}
-                                            </span>
-                                        ))}
+                                            );
+                                            return (
+                                                <span key={idx}>
+                                                    {nameContent}
+                                                    {author.isCoFirst && (
+                                                        <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>*</sup>
+                                                    )}
+                                                    {author.isCorresponding && (
+                                                        <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>†</sup>
+                                                    )}
+                                                    {idx < pub.authors.length - 1 && ', '}
+                                                </span>
+                                            );
+                                        })}
                                     </p>
                                     <div className="flex flex-wrap items-center gap-2 mb-3">
-                                        {((pub.venue === 'arXiv' || pub.arxivId) || (pub.journal || pub.conference)) && pub.year && (
+                                        {(pub.journal || pub.conference || pub.venue || pub.arxivId) && pub.year && (
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">
-                                                {(pub.venue === 'arXiv' || pub.arxivId) ? 'arXiv' : (pub.journal || pub.conference)} {pub.year}
+                                                {pub.journal || pub.conference || pub.venue || 'arXiv'} {pub.year}
                                             </span>
                                         )}
                                     </div>

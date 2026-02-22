@@ -51,36 +51,50 @@ export default function SelectedPublications({ publications, title = 'Selected P
                                             src={`/papers/${pub.preview}`}
                                             alt={pub.title}
                                             fill
-                                            className="object-contain p-2 transition-all duration-300 ease-in-out group-hover:scale-150 group-hover:z-[100] group-hover:shadow-2xl rounded-lg"
+                                            className="object-contain p-2 transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:z-[100] group-hover:shadow-2xl rounded-lg"
                                             sizes="128px"
                                         />
                                     </div>
                                 </div>
                             )}
                             <div className="flex-grow">
-                                <h3 className="font-semibold text-primary mb-2 leading-tight">
+                                <h3 className="font-semibold text-primary mb-2 leading-snug">
                                     {pub.title}
                                 </h3>
                                 <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-1">
-                                    {pub.authors.map((author, idx) => (
-                                        <span key={idx}>
+                                    {pub.authors.map((author, idx) => {
+                                        const nameContent = author.url ? (
+                                            <a
+                                                href={author.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={`hover:underline cursor-pointer ${author.isHighlighted ? 'font-semibold text-accent' : 'hover:text-accent transition-colors'}`}
+                                            >
+                                                {author.name}
+                                            </a>
+                                        ) : (
                                             <span className={author.isHighlighted ? 'font-semibold text-accent' : ''}>
                                                 {author.name}
                                             </span>
-                                            {author.isCoFirst && (
-                                                <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>*</sup>
-                                            )}
-                                            {author.isCorresponding && (
-                                                <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>†</sup>
-                                            )}
-                                            {idx < pub.authors.length - 1 && ', '}
-                                        </span>
-                                    ))}
+                                        );
+                                        return (
+                                            <span key={idx}>
+                                                {nameContent}
+                                                {author.isCoFirst && (
+                                                    <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>*</sup>
+                                                )}
+                                                {author.isCorresponding && (
+                                                    <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>†</sup>
+                                                )}
+                                                {idx < pub.authors.length - 1 && ', '}
+                                            </span>
+                                        );
+                                    })}
                                 </p>
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                                    {((pub.venue === 'arXiv' || pub.arxivId) || (pub.journal || pub.conference)) && pub.year && (
+                                    {(pub.journal || pub.conference || pub.venue || pub.arxivId) && pub.year && (
                                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">
-                                            {(pub.venue === 'arXiv' || pub.arxivId) ? 'arXiv' : (pub.journal || pub.conference)} {pub.year}
+                                            {pub.journal || pub.conference || pub.venue || 'arXiv'} {pub.year}
                                         </span>
                                     )}
                                 </div>
