@@ -1,0 +1,3 @@
+:HL["/_next/static/chunks/33fe7063c635829e.css","style"]
+:HL["https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap","style"]
+0:{"buildId":"eJmAS4bSgJUF5hZPCAqBJ","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[51205,["/_next/static/chunks/9c176f40581040da.js","/_next/static/chunks/96325a1b41eead81.js","/_next/static/chunks/0137a57162bf5a2a.js","/_next/static/chunks/9f31ef4f69e03b59.js","/_next/static/chunks/35851190b7d05ff5.js"],"default"]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/694836347d1e5ef3.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"eJmAS4bSgJUF5hZPCAqBJ","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12","children":[false,["$","$L2",null,{"config":{"type":"text","title":"CV","source":"markdown/cv.md"},"content":"[Click here for my latest CV in PDF format.](/Litian_CV.pdf)\n"}],false]}],[["$","script","script-0",{"src":"/_next/static/chunks/9f31ef4f69e03b59.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/35851190b7d05ff5.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
