@@ -21,7 +21,12 @@ while true; do
     [ -f /tmp/gpu_monitor_stop ] && echo "Stop file found, exiting." && rm /tmp/gpu_monitor_stop && break
 
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Collecting $CLUSTER data..."
-    python3 "$SCRIPT_DIR/gpu_monitor_collect.py" --cluster "$CLUSTER" 2>&1
+    # Support both local (gpu_monitor_collect.py) and repo (collect.py) naming
+    if [ -f "$SCRIPT_DIR/collect.py" ]; then
+        python3 "$SCRIPT_DIR/collect.py" --cluster "$CLUSTER" 2>&1
+    else
+        python3 "$SCRIPT_DIR/gpu_monitor_collect.py" --cluster "$CLUSTER" 2>&1
+    fi
 
     sleep $INTERVAL
 done
