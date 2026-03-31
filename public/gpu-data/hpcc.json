@@ -1,6 +1,6 @@
 {
   "cluster": "hpcc",
-  "timestamp": "2026-03-31T21:55:33Z",
+  "timestamp": "2026-03-31T22:00:36Z",
   "nodes": [
     {
       "name": "gpu01",
@@ -96,6 +96,13 @@
     },
     {
       "timestamp": "2026-03-31T21:55:33Z",
+      "total": 60,
+      "used": 33,
+      "free": 11,
+      "down": 16
+    },
+    {
+      "timestamp": "2026-03-31T22:00:36Z",
       "total": 60,
       "used": 33,
       "free": 11,
