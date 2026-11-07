@@ -26,4 +26,6 @@ The new site is a single homepage (plus a blog that did not exist here). Publica
 | `/edit/` | https://litiangong.com/ |
 | any other path | https://litiangong.com/ |
 
-The previous source is on [`archive/old-site`](https://github.com/Gonglitian/Gonglitian.github.io/tree/archive/old-site). The last published build is on [`archive/old-gh-pages`](https://github.com/Gonglitian/Gonglitian.github.io/tree/archive/old-gh-pages). This repository stays open so GitHub Pages can keep serving the redirect.
+The previous source is on [`archive/old-site`](https://github.com/Gonglitian/Gonglitian.github.io/tree/archive/old-site). The last published build, before this redirect, is on [`archive/old-gh-pages`](https://github.com/Gonglitian/Gonglitian.github.io/tree/archive/old-gh-pages). This repository stays open so GitHub Pages can keep serving the redirect.
+
+GitHub Pages is configured to publish the `gh-pages` branch. That branch now contains the same redirect files as `main`. In the repository settings, under Pages, the branch can be switched to `main` / `/ (root)` so later edits to the default branch are what the live site serves.
