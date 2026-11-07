@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# No sitemap is published here. Submit https://litiangong.com/sitemap-index.xml
+# on the new site in Google Search Console.
